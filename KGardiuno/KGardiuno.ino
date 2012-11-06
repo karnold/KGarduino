@@ -20,6 +20,23 @@ void setup() {
 }
 
 void loop() {
+  takeReadings();
+  delay(3000);
+  /*
+  if (Serial.available() > 0) {
+    int incomingByte = Serial.read();
+
+    Serial.println(incomingByte);
+    
+    if (incomingByte == 49) {
+      delay(100);
+      takeReadings(); 
+    }
+  } 
+  */ 
+}
+
+void takeReadings() {
   // Get luminosity reading
   uint32_t lum = tsl.getFullLuminosity();
   uint16_t ir, full;
@@ -39,11 +56,11 @@ void loop() {
   // Convert to Fahrenheit
   float temperatureF = (temperatureC * 9 / 5) + 32;
   
-  Serial.print("Tempurature F: ");
-  Serial.println(temperatureF);
-  Serial.print("Lux: ");
-  Serial.println(tsl.calculateLux(full, ir));
+  // Convert lux value
+  float lux = tsl.calculateLux(full, ir);
   
-  delay(1000);
+  Serial.print(temperatureF);
+  Serial.print(":");
+  Serial.println(lux);
   
 }
