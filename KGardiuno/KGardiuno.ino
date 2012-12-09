@@ -15,7 +15,7 @@ void setup() {
     while(1);
   }
   
-  tsl.setGain(TSL2561_GAIN_0X);
+  tsl.setGain(TSL2561_GAIN_16X);
   tsl.setTiming(TSL2561_INTEGRATIONTIME_13MS);
 }
 
